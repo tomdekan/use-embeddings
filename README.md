@@ -1,14 +1,6 @@
 # Demo to use embeddings
 
-This project demonstrates how to classify text into predefined categories using OpenAI's text embeddings and cosine similarity in TypeScript.
-
-## Features
-
-* Fetches text embeddings from OpenAI (`text-embedding-3-small`).
-* Calculates cosine similarity between text embeddings and category description embeddings.
-* Classifies input text based on the highest similarity score.
-* Uses `dotenv` to manage API keys securely.
-* Built with TypeScript and uses `pnpm` for package management.
+This project uses the code from [The simplest guide to using embeddings](https://tomdekan.com/articles/use-embeddings), showing how to classify text into predefined categories using OpenAI's text embeddings and cosine similarity in TypeScript.
 
 ## Prerequisites
 
@@ -52,24 +44,7 @@ There are two main ways to run the script:
 
 ```bash
     pnpm run dev
-    ```
-
-2.  **Production Mode:**
-    First, build the TypeScript code into JavaScript:
-    
-
-```bash
-    pnpm run build
-    ```
-
-    This command compiles `classify.ts` into the `dist` directory.
-
-    Then, run the compiled JavaScript file:
-    
-
-```bash
-    pnpm run start
-    ```
+```
 
 ## Categories
 
@@ -81,40 +56,3 @@ The script currently classifies text into the following categories based on thei
 *   **look_and_feel**: The visual appeal and aesthetic quality of the interface. Includes design consistency, visual hierarchy, and emotional response.
 
 You can easily modify or add categories by editing the `categories` object in `classify.ts` .
-
-## How it Works
-
-1.  **Initialization**: The script loads the OpenAI API key from the `.env` file and initializes the OpenAI client.
-2.  **Category Definitions**: Predefined categories and their detailed descriptions are stored in the `categories` object.
-3.  **Embedding Generation**: The `getEmbedding` function sends text (either the input text or a category description) to the OpenAI API to get its vector embedding.
-4.  **Cosine Similarity**: The `cosineSimilarity` function calculates the similarity between two vectors. It uses helper functions `dotProduct`,    `magnitude`, and `normalize`.
-5.  **Classification**: The `classifyText` function takes an input text string:
-    - It gets the embedding for the input text.
-    - It fetches embeddings for all category descriptions concurrently using `Promise.all`.
-    - It calculates the cosine similarity between the input text embedding and each category embedding.
-    - It returns an object with categories as keys and their similarity scores as values, sorted in descending order of score.
-6.  **Main Execution**: The `main` function provides an example usage:
-    - Defines a sample text.
-    - Calls `classifyText` to get the classification results.
-    - Prints the similarity score for each category.
-    - Identifies and prints the best matching category.
-    - Demonstrates filtering categories based on a similarity threshold.
-    You should see output similar to this (scores may vary slightly):
-
-```
-
-Classification results:
-look_and_feel: 0.6848
-ease_of_use: 0.3204
-functionality: 0.2793
-ease_of_setup: 0.1987
-
-Best matching category: look_and_feel with score: 0.6848
-
-```
-
-## Customization
-
-* **Categories**: Modify the `categories` object in `classify.ts` to change or add new classification categories and their descriptions.
-* **OpenAI Model**: Change the `model` parameter in the `getEmbedding` function if you want to use a different embedding model (e.g.,   `text-embedding-3-large`).
-* **Threshold**: Adjust the `threshold` variable in the `main` function to change the cutoff for considering categories relevant.
