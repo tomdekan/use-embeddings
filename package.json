@@ -1,0 +1,29 @@
+{
+  "name": "openai-embedding-classifier",
+  "version": "1.0.0",
+  "description": "Classify text using OpenAI embeddings.",
+  "main": "dist/classify.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/classify.js",
+    "dev": "ts-node classify.ts"
+  },
+  "keywords": [
+    "openai",
+    "embeddings",
+    "typescript",
+    "nlp",
+    "classification"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "openai": "^4.52.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3"
+  }
+} 
