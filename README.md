@@ -1,4 +1,4 @@
-# OpenAI Text Classifier using Embeddings
+# Demo to use embeddings
 
 This project demonstrates how to classify text into predefined categories using OpenAI's text embeddings and cosine similarity in TypeScript.
 
@@ -18,8 +18,7 @@ This project demonstrates how to classify text into predefined categories using 
 
 ## Setup
 
-1.  **Clone the repository (or create the files as provided):**
-    
+1. **Clone the repository (or create the files as provided):**
 
 ```bash
     # If you cloned a repo, navigate into it
@@ -38,6 +37,7 @@ This project demonstrates how to classify text into predefined categories using 
     
 
 ```
+
     OPENAI_API_KEY=your_openai_api_key_here
     ```
 
@@ -47,9 +47,8 @@ This project demonstrates how to classify text into predefined categories using 
 
 There are two main ways to run the script:
 
-1.  **Development Mode (using `ts-node`):**
+1. **Development Mode (using `ts-node`):**
     This command compiles and runs the TypeScript file directly. It's useful during development as it doesn't require a separate build step.
-    
 
 ```bash
     pnpm run dev
@@ -72,12 +71,23 @@ There are two main ways to run the script:
     pnpm run start
     ```
 
+## Categories
+
+The script currently classifies text into the following categories based on their descriptions:
+
+*   **ease_of_use**: How intuitive and user-friendly the product is. Includes navigation flow, clarity of UI elements, and minimal learning curve.
+*   **functionality**: How well the product performs its core functions. Includes feature completeness, reliability, and performance.
+*   **ease_of_setup**: How simple it is to install, configure, and get started with the product. Includes documentation quality and initial onboarding.
+*   **look_and_feel**: The visual appeal and aesthetic quality of the interface. Includes design consistency, visual hierarchy, and emotional response.
+
+You can easily modify or add categories by editing the `categories` object in `classify.ts` .
+
 ## How it Works
 
 1.  **Initialization**: The script loads the OpenAI API key from the `.env` file and initializes the OpenAI client.
 2.  **Category Definitions**: Predefined categories and their detailed descriptions are stored in the `categories` object.
 3.  **Embedding Generation**: The `getEmbedding` function sends text (either the input text or a category description) to the OpenAI API to get its vector embedding.
-4.  **Cosine Similarity**: The `cosineSimilarity` function calculates the similarity between two vectors. It uses helper functions `dotProduct`,  `magnitude`, and `normalize`.
+4.  **Cosine Similarity**: The `cosineSimilarity` function calculates the similarity between two vectors. It uses helper functions `dotProduct`,    `magnitude`, and `normalize`.
 5.  **Classification**: The `classifyText` function takes an input text string:
     - It gets the embedding for the input text.
     - It fetches embeddings for all category descriptions concurrently using `Promise.all`.
@@ -89,11 +99,22 @@ There are two main ways to run the script:
     - Prints the similarity score for each category.
     - Identifies and prints the best matching category.
     - Demonstrates filtering categories based on a similarity threshold.
+    You should see output similar to this (scores may vary slightly):
+
+```
+
+Classification results:
+look_and_feel: 0.6848
+ease_of_use: 0.3204
+functionality: 0.2793
+ease_of_setup: 0.1987
+
+Best matching category: look_and_feel with score: 0.6848
+
+```
 
 ## Customization
 
 * **Categories**: Modify the `categories` object in `classify.ts` to change or add new classification categories and their descriptions.
-* **OpenAI Model**: Change the `model` parameter in the `getEmbedding` function if you want to use a different embedding model (e.g.,  `text-embedding-3-large`).
-* **Threshold**: Adjust the `threshold` variable in the `main` function to change the cutoff for considering categories relevant. 
-# use-embeddings
-# use-embeddings
+* **OpenAI Model**: Change the `model` parameter in the `getEmbedding` function if you want to use a different embedding model (e.g.,   `text-embedding-3-large`).
+* **Threshold**: Adjust the `threshold` variable in the `main` function to change the cutoff for considering categories relevant.
