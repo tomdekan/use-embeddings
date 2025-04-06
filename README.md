@@ -95,3 +95,4 @@ There are two main ways to run the script:
 * **Categories**: Modify the `categories` object in `classify.ts` to change or add new classification categories and their descriptions.
 * **OpenAI Model**: Change the `model` parameter in the `getEmbedding` function if you want to use a different embedding model (e.g.,  `text-embedding-3-large`).
 * **Threshold**: Adjust the `threshold` variable in the `main` function to change the cutoff for considering categories relevant. 
+# use-embeddings
